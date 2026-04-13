@@ -1,0 +1,92 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type GuideArticle__789331693 =
+  {
+    author : Text;
+    content : Text;
+    id : Nat;
+    publishDate : Int;
+    readTime : Nat;
+    relatedProductIds : [Nat];
+    tags : [GuideTag__896642060];
+    title : Text
+  };
+type GuideTag__896642060 =
+  {#greyHair; #products; #scalpCare; #styling; #thinning};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ProductCategory__937310353 =
+  {#scalpCare; #shampoosAndConditioners; #stylingTools; #treatmentsAndSerums};
+type Product__623636215 =
+  {
+    benefits : [Text];
+    brand : Text;
+    category : ProductCategory__937310353;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    imageUrl : Text;
+    keyIngredients : [Text];
+    name : Text;
+    price : Float;
+    rating : Float;
+    reviewCount : Nat;
+    size : Text;
+    stockStatus : StockStatus__829637808;
+    suitableFor : [Text];
+    tags : [Text]
+  };
+type Review__247849574 =
+  {
+    authorName : Text;
+    content : Text;
+    date : Int;
+    id : Nat;
+    productId : Nat;
+    rating : Float
+  };
+type StockStatus__829637808 = {#inStock; #lowStock; #outOfStock};
+type Subscriber__73944578 =
+  {
+    planId : Text;
+    startedAt : Int;
+    var status : SubscriptionStatus__473694714;
+    var stripeCustomerId : Text;
+    var stripeSubscriptionId : Text;
+    userId : Principal
+  };
+type SubscriptionStatus__473694714 = {#active; #cancelled; #inactive};
+actor {
+  stable guides :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?GuideArticle__789331693]];
+      var elementIndex : Nat__490723111
+    };
+  stable nextGuideId : {var value : Nat};
+  stable nextProductId : {var value : Nat};
+  stable nextReviewId : {var value : Nat};
+  stable products :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Product__623636215]];
+      var elementIndex : Nat__490723111
+    };
+  stable reviews :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Review__247849574]];
+      var elementIndex : Nat__490723111
+    };
+  stable subscribers :
+    {
+      var root : Node__46230540<Principal, Subscriber__73944578>;
+      var size : Nat__490723111
+    }
+};

@@ -1,0 +1,23 @@
+{
+  "overview": "An e-commerce shop website for elderly hair style products, featuring a product catalog, product detail pages, shopping cart, and a comprehensive hair care guide section. The shop showcases products specifically formulated for grey/white hair, thinning hair, and sensitive scalps.",
+  "features": [
+    "Product catalog with categories, filtering, and sorting",
+    "Product detail pages with reviews and related products",
+    "Shopping cart with quantity editing",
+    "Checkout with address forms",
+    "Hair care guide articles with topic filtering",
+    "Related products in guide articles",
+    "Search bar across shop and guides",
+    "Accessible design for elderly users"
+  ],
+  "category": "productivity",
+  "tags": [
+    "shop",
+    "hair-care",
+    "elderly",
+    "e-commerce",
+    "guide",
+    "products"
+  ],
+  "last_updated": "2026-04-13T10:37:02.329Z"
+}

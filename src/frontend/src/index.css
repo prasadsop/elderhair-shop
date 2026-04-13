@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Figtree", serif;
+    --font-body: "Lora", serif;
+    --font-mono: monospace;
+    --radius: 0.75rem;
+
+    --background: 0.96 0.02 75;
+    --foreground: 0.25 0.01 40;
+    --card: 0.98 0.01 80;
+    --card-foreground: 0.25 0.01 40;
+    --popover: 0.98 0.01 80;
+    --popover-foreground: 0.25 0.01 40;
+
+    --primary: 0.62 0.18 42;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.92 0.02 70;
+    --secondary-foreground: 0.3 0.01 40;
+    --muted: 0.92 0.02 70;
+    --muted-foreground: 0.55 0.01 40;
+
+    --accent: 0.68 0.12 145;
+    --accent-foreground: 0.25 0.01 40;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0.02 75;
+    --input: 0.94 0.02 75;
+    --ring: 0.62 0.18 42;
+
+    --chart-1: 0.62 0.18 42;
+    --chart-2: 0.68 0.12 145;
+    --chart-3: 0.72 0.15 35;
+    --chart-4: 0.58 0.14 65;
+    --chart-5: 0.65 0.1 120;
+
+    --sidebar: 0.96 0.02 75;
+    --sidebar-foreground: 0.25 0.01 40;
+    --sidebar-primary: 0.62 0.18 42;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.68 0.12 145;
+    --sidebar-accent-foreground: 0.25 0.01 40;
+    --sidebar-border: 0.88 0.02 75;
+    --sidebar-ring: 0.62 0.18 42;
+  }
+
+  .dark {
+    --background: 0.15 0.01 40;
+    --foreground: 0.92 0.02 70;
+    --card: 0.22 0.01 40;
+    --card-foreground: 0.92 0.02 70;
+    --popover: 0.28 0.01 40;
+    --popover-foreground: 0.92 0.02 70;
+
+    --primary: 0.65 0.16 38;
+    --primary-foreground: 0.96 0.02 75;
+
+    --secondary: 0.28 0.01 40;
+    --secondary-foreground: 0.82 0.02 70;
+    --muted: 0.28 0.01 40;
+    --muted-foreground: 0.6 0.01 40;
+
+    --accent: 0.72 0.1 150;
+    --accent-foreground: 0.15 0.01 40;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.96 0.02 75;
+
+    --border: 0.35 0.01 40;
+    --input: 0.35 0.01 40;
+    --ring: 0.65 0.16 38;
+
+    --chart-1: 0.65 0.16 38;
+    --chart-2: 0.72 0.1 150;
+    --chart-3: 0.75 0.12 40;
+    --chart-4: 0.6 0.12 70;
+    --chart-5: 0.68 0.08 125;
+
+    --sidebar: 0.22 0.01 40;
+    --sidebar-foreground: 0.92 0.02 70;
+    --sidebar-primary: 0.65 0.16 38;
+    --sidebar-primary-foreground: 0.96 0.02 75;
+    --sidebar-accent: 0.72 0.1 150;
+    --sidebar-accent-foreground: 0.15 0.01 40;
+    --sidebar-border: 0.35 0.01 40;
+    --sidebar-ring: 0.65 0.16 38;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("/assets/fonts/Lora.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .text-lg-readable {
+    @apply text-lg leading-relaxed;
+  }
+
+  .text-xl-readable {
+    @apply text-xl leading-relaxed;
+  }
+
+  .shadow-subtle {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Elderly accessible focus ring */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+}

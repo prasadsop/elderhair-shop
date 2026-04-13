@@ -1,0 +1,121 @@
+type SubscriptionStatus = 
+ variant {
+   active;
+   cancelled;
+   inactive;
+ };
+type SubscriptionPlan = 
+ record {
+   currency: text;
+   description: text;
+   features: vec text;
+   id: text;
+   interval: text;
+   name: text;
+   price: float64;
+ };
+type SubscriberPublic = 
+ record {
+   planId: text;
+   startedAt: int;
+   status: SubscriptionStatus;
+   stripeCustomerId: text;
+   stripeSubscriptionId: text;
+   userId: principal;
+ };
+type StockStatus = 
+ variant {
+   inStock;
+   lowStock;
+   outOfStock;
+ };
+type SortOrder = 
+ variant {
+   byNewest;
+   byPopularity;
+   byPrice;
+   byRating;
+ };
+type Review = 
+ record {
+   authorName: text;
+   content: text;
+   date: int;
+   id: nat;
+   productId: nat;
+   rating: float64;
+ };
+type ProductFilter = 
+ record {
+   category: opt ProductCategory;
+   searchTerm: opt text;
+   sortOrder: opt SortOrder;
+ };
+type ProductCategory = 
+ variant {
+   scalpCare;
+   shampoosAndConditioners;
+   stylingTools;
+   treatmentsAndSerums;
+ };
+type Product = 
+ record {
+   benefits: vec text;
+   brand: text;
+   category: ProductCategory;
+   createdAt: int;
+   description: text;
+   id: nat;
+   imageUrl: text;
+   keyIngredients: vec text;
+   name: text;
+   price: float64;
+   rating: float64;
+   reviewCount: nat;
+   size: text;
+   stockStatus: StockStatus;
+   suitableFor: vec text;
+   tags: vec text;
+ };
+type GuideTag = 
+ variant {
+   greyHair;
+   products;
+   scalpCare;
+   styling;
+   thinning;
+ };
+type GuideArticle = 
+ record {
+   author: text;
+   content: text;
+   id: nat;
+   publishDate: int;
+   readTime: nat;
+   relatedProductIds: vec nat;
+   tags: vec GuideTag;
+   title: text;
+ };
+service : {
+  cancelMySubscription: () -> (bool);
+  createGuideArticle: (title: text, author: text, readTime: nat, content:
+   text, tags: vec GuideTag, relatedProductIds: vec nat) -> (GuideArticle);
+  createProduct: (name: text, brand: text, price: float64, category:
+   ProductCategory, description: text, imageUrl: text, stockStatus:
+   StockStatus, keyIngredients: vec text, benefits: vec text, suitableFor:
+   vec text, size: text, tags: vec text) -> (Product);
+  getGuideArticle: (id: nat) -> (opt GuideArticle) query;
+  getMySubscription: () -> (opt SubscriberPublic) query;
+  getProduct: (id: nat) -> (opt Product) query;
+  getProductReviews: (productId: nat) -> (vec Review) query;
+  getRelatedProducts: (productId: nat, limit: nat) -> (vec Product) query;
+  getSubscriptionPlan: (planId: text) -> (opt SubscriptionPlan) query;
+  isSubscribed: () -> (bool) query;
+  listGuideArticles: (tag: opt GuideTag) -> (vec GuideArticle) query;
+  listProducts: (filter: ProductFilter) -> (vec Product) query;
+  listSubscriptionPlans: () -> (vec SubscriptionPlan) query;
+  recordSubscription: (planId: text, stripeCustomerId: text,
+   stripeSubscriptionId: text) -> (SubscriberPublic);
+  submitReview: (productId: nat, authorName: text, rating: float64, content:
+   text) -> (Review);
+}
